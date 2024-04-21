@@ -33,6 +33,8 @@ go run main.go
 ## Pending Task
 
     Create a settings.go file to define constants and configuration settings for the project.
+### TODO
+    [ ] set endpoints names with const on settings.go
 
 ## Contributing
 
