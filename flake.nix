@@ -21,6 +21,7 @@
           env.AWS_PROFILE = "monk3yd-rlab";
           env.AWS_ACCOUNT_ID = "963485456147";
           env.AWS_REGION_NAME = "us-east-1";
+          env.PORT = ":8080";
 
           languages.go.enable = true;
 

@@ -3,17 +3,20 @@ package main
 import (
 	controllers "PocGotham/controllers"
 	"log"
+	"log/slog"
 	"net/http"
+	"os"
 
 	"github.com/go-chi/chi"
+	"github.com/go-chi/chi/middleware"
 )
 
 func main() {
 	router := chi.NewRouter()
 
-	router.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		controllers.HandlerBase(w, r)
-	})
+	router.Use(middleware.Logger)
+
+	router.Get("/", controllers.HandlerBase)
 
 	// Configurar el manejador para renderizar el HTML
 	router.Post("/partial-username-input-text", func(w http.ResponseWriter, r *http.Request) {
@@ -37,10 +40,11 @@ func main() {
 		controllers.HandlerSignUpButton(w, r)
 	})
 
-	log.Printf("Server starting on port 8080")
+	port := os.Getenv("PORT")
+	slog.Info("Server starting", "port", port)
 
 	// Start the server with error handling
-	err := http.ListenAndServe(":8080", router)
+	err := http.ListenAndServe(port, router)
 	if err != nil {
 		log.Fatalf("Server failed to start: %v", err)
 	}
