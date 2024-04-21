@@ -2,3 +2,5 @@
 .vscode
 .devenv
 .direnv
+*_templ.go*
+tmp
