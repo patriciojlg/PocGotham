@@ -19,7 +19,7 @@ templ BaseTemplate() {
 						<div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
 							<div class="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
 								<form class="space-y-6" action="#" method="POST">
-									<div id="wrap-username"  hx-select="#wrap-username" hx-post="/partial-username-input-text" hx-trigger="load" hx-swap="outerHTML"></div>
+									<div id="wrap-username"  hx-select="#wrap-username" hx-get="/partial-username-input-text" hx-trigger="load" hx-swap="outerHTML"></div>
 									<div id="wrap-password"  hx-select="#wrap-password" hx-post="/partial-password-input-text" hx-trigger="load"  hx-swap="outerHTML"></div>
 									<div class="flex items-center justify-between">
 										<div hx-post="/partial-remember-checkbox" hx-trigger="load" hx-swap="outerHTML"></div>

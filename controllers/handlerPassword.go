@@ -15,7 +15,7 @@ func passwordInputTextStatus() *models.InputTextModel {
 	password.SetName("password")
 	password.SetType("password")
 	password.SetAutocomplete("password")
-	password.SetHXTrigger("change")
+	password.SetHXTrigger("change submit")
 	password.SetHXEndpoint("/partial-password-input-text")
 	password.SetClassLabelByStatus("default")
 	password.SetClassInputTextByStatus("default")

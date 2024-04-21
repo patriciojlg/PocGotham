@@ -14,8 +14,13 @@ func main() {
 	})
 	// Configurar el manejador para renderizar el HTML
 	r.Post("/partial-username-input-text", func(w http.ResponseWriter, r *http.Request) {
-		controllers.MainControllerUsernameInputText(w, r)
 
+		controllers.FromHookUsernameInputText(w, r)
+
+	})
+	r.Get("/partial-username-input-text", func(w http.ResponseWriter, r *http.Request) {
+
+		controllers.FromHookUsernameInputText(w, r)
 	})
 	r.Post("/partial-password-input-text", func(w http.ResponseWriter, r *http.Request) {
 		controllers.MainControllerPasswordInputText(w, r)
@@ -26,7 +31,7 @@ func main() {
 
 	})
 	r.Post("/submit-signup", func(w http.ResponseWriter, r *http.Request) {
-		controllers.FromHookUsernameInputText(w, r)
+
 		controllers.HandlerSignUpButton(w, r)
 	})
 	r.Get("/submit-signup", func(w http.ResponseWriter, r *http.Request) {
