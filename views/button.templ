@@ -1,0 +1,18 @@
+package views
+
+import models "PocGotham/models"
+
+templ ButtonTempl(modelButton *models.Button) {
+	<div
+		hx-post={modelButton.HXPostEndpoint}
+		hx-trigger={modelButton.HXTrigger}
+		hx-swap={modelButton.HXSwap}
+	>
+		<button id={ modelButton.Id }
+
+			type="button"
+			class={ modelButton.CSSClassButton }
+			disabled?={ modelButton.Disabled }
+		>{ modelButton.LabelText }</button>
+	</div>
+}

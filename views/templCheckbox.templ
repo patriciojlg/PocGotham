@@ -1,0 +1,12 @@
+package views
+
+import models "PocGotham/models"
+
+templ CheckboxView(checkboxModel *models.Checkbox) {
+	<div  hx-post={checkboxModel.HXPostEndpoint} hx-trigger="change" hx-swap={checkboxModel.HXSwap}>
+		<div class="flex items-center">
+			<input id={ checkboxModel.Id } checked?={checkboxModel.Checked} name={ checkboxModel.Name } disable?={ checkboxModel.Disabled } required?={ checkboxModel.Required } type="checkbox" class={ checkboxModel.InputCSSClass }/>
+			<label for={ checkboxModel.For } class={ checkboxModel.LabelCSSClass }>{ checkboxModel.LabelText }</label>
+		</div>
+	</div>
+}

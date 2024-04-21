@@ -1,0 +1,16 @@
+package views
+
+import models "PocGotham/models"
+
+templ InputTextViews(modelInputText *models.InputTextModel) {
+
+	<div id={modelInputText.IdWrap} hx-swap-oob="true" hx-select={modelInputText.HXTarget} hx-post={modelInputText.HXEndpoint} hx-trigger={modelInputText.HxTrigger} hx-swap="OutterHTML">
+		<label for={modelInputText.For} class={modelInputText.ClassLabel}>{modelInputText.LabelText}</label>
+		<div class="mt-2">
+			<input value={modelInputText.Value} id={modelInputText.Id} name={modelInputText.Name} type={modelInputText.Type} autocomplete={modelInputText.Autocomplete} required?={modelInputText.Required} class={modelInputText.ClassInput}/>
+		</div>
+        <span class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+			{modelInputText.ErrorMessage}
+		</span>
+	</div>
+}
