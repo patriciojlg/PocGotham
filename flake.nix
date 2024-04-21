@@ -27,6 +27,7 @@
           packages = [
             pkgs.pulumi
             pkgs.pulumiPackages.pulumi-language-go
+            pkgs.air
           ];
         })
       ];
