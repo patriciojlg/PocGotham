@@ -20,14 +20,14 @@ func main() {
 
 	// Routes
 	router.Get("/", controllers.HandlerBase)
-	router.Get("/partial-username-input-text", controllers.MainControllerUsernameInputText)
-	router.Post("/partial-username-input-text", controllers.MainControllerUsernameInputText)
-	router.Get("/partial-password-input-text", controllers.MainControllerPasswordInputText)
-	router.Post("/partial-password-input-text", controllers.MainControllerPasswordInputText)
-	router.Post("/partial-remember-checkbox", controllers.HandlerCheckboxRemember)
+	router.Get(settings.USERNAME_PARTIAL_ENDOINT, controllers.MainControllerUsernameInputText)
+	router.Post(settings.USERNAME_PARTIAL_ENDOINT, controllers.MainControllerUsernameInputText)
+	router.Get(settings.PASSWORD_PARTIAL_ENDOINT, controllers.MainControllerPasswordInputText)
+	router.Post(settings.PASSWORD_PARTIAL_ENDOINT, controllers.MainControllerPasswordInputText)
+	router.Post(settings.REMEMBER_PARTIAL_ENDOINT, controllers.HandlerCheckboxRemember)
 
-	router.Get("/submit-signup", controllers.HandlerSignUpButton)
-	router.Post("/submit-signup", controllers.HandlerSignUpButton)
+	router.Get(settings.SIGNUP_PARTIAL_ENDOINT, controllers.HandlerSignUpButton)
+	router.Post(settings.SIGNUP_PARTIAL_ENDOINT, controllers.HandlerSignUpButton)
 
 	slog.Info("Server starting", "port", settings.PORT)
 

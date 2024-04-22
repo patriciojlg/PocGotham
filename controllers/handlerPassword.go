@@ -2,6 +2,7 @@ package controllers
 
 import (
 	models "PocGotham/models"
+	settings "PocGotham/settings"
 	validators "PocGotham/validators"
 	views "PocGotham/views"
 	"net/http"
@@ -16,7 +17,7 @@ func passwordInputTextStatus() *models.InputTextModel {
 	password.SetType("password")
 	password.SetAutocomplete("password")
 	password.SetHXTrigger("change submit")
-	password.SetHXEndpoint("/partial-password-input-text")
+	password.SetHXEndpoint(settings.PASSWORD_PARTIAL_ENDOINT)
 	password.SetClassLabelByStatus("default")
 	password.SetClassInputTextByStatus("default")
 	return password

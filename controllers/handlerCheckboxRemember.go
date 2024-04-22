@@ -2,6 +2,7 @@ package controllers
 
 import (
 	models "PocGotham/models"
+	settings "PocGotham/settings"
 	views "PocGotham/views"
 	"net/http"
 )
@@ -12,7 +13,7 @@ func HandlerCheckboxRemember(w http.ResponseWriter, r *http.Request) {
 	remember.SetId("remember")
 	remember.SetName("remember")
 	remember.SetChecked(false)
-	remember.SetHXPostEndpoint("/partial-remember-checkbox")
+	remember.SetHXPostEndpoint(settings.PASSWORD_PARTIAL_ENDOINT)
 	remember.SetHXSwap("outerHTML")
 	remember.SetLabelCSSClassByDefault()
 	remember.SetInputCSSClassByStatus()

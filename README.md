@@ -30,12 +30,10 @@ go mod tidy
 
 go run main.go
 ```
-## Pending Task
 
-    Create a settings.go file to define constants and configuration settings for the project.
-### TODO
-    [ ] Set endpoints names with const on settings.go
-    [ ] Add an error handler that allows adding validators that return error/nil. Implement them by appending them to a list of functions through a method.
+## TODO
+    [X] Set endpoints names with const on settings.go
+    [X] Add an error handler that allows adding validators that return error/nil. Implement them by appending them to a list of functions through a method.
     [ ] Add minimal structure of the service package for consuming AWS Cognito.
 
 ## Contributing

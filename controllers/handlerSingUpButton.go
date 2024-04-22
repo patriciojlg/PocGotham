@@ -2,6 +2,7 @@ package controllers
 
 import (
 	models "PocGotham/models"
+	settings "PocGotham/settings"
 	views "PocGotham/views"
 	"net/http"
 )
@@ -11,7 +12,7 @@ var classSignupButton = "flex w-full justify-center rounded-md bg-indigo-600 px-
 func HandlerSignUpButton(w http.ResponseWriter, r *http.Request) {
 	modelButton := models.NewButton("signup-button", "Crear cuenta")
 	modelButton.SetDisabled(false)
-	modelButton.SetHXPostEndpoint("/submit-signup")
+	modelButton.SetHXPostEndpoint(settings.SIGNUP_PARTIAL_ENDOINT)
 	modelButton.SetHXTrigger("click")
 	modelButton.SetHXSwap("outerHTML")
 	modelButton.SetCSSClassButton(classSignupButton)
