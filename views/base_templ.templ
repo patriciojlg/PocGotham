@@ -14,17 +14,17 @@ templ BaseTemplate() {
 					<div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
 						<div class="sm:mx-auto sm:w-full sm:max-w-md">
 							<img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company"/>
-							<h2 class="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
+							<h2 class="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Crea tu propia cuenta</h2>
 						</div>
 						<div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
 							<div class="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
 								<form class="space-y-6" action="#" method="POST">
 									<div id="wrap-username"  hx-select="#wrap-username" hx-get="/partial-username-input-text" hx-trigger="load" hx-swap="outerHTML"></div>
-									<div id="wrap-password"  hx-select="#wrap-password" hx-post="/partial-password-input-text" hx-trigger="load"  hx-swap="outerHTML"></div>
+									<div id="wrap-password"  hx-select="#wrap-password" hx-get="/partial-password-input-text" hx-trigger="load"  hx-swap="outerHTML"></div>
 									<div class="flex items-center justify-between">
 										<div hx-post="/partial-remember-checkbox" hx-trigger="load" hx-swap="outerHTML"></div>
 										<div class="text-sm leading-6">
-											<a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+											<a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Olvidó su contraseña?</a>
 										</div>
 									</div>
 									<div hx-get="/submit-signup"  hx-trigger="load" hx-swap="outerHTML"></div>
@@ -32,12 +32,13 @@ templ BaseTemplate() {
 					
 								</form>
 								<div>
+								
 									<div class="relative mt-10">
 										<div class="absolute inset-0 flex items-center" aria-hidden="true">
 											<div class="w-full border-t border-gray-200"></div>
 										</div>
 										<div class="relative flex justify-center text-sm font-medium leading-6">
-											<span class="bg-white px-6 text-gray-900">Or continue with</span>
+											<span class="bg-white px-6 text-gray-900">O continuar con</span>
 										</div>
 									</div>
 									<div class="mt-6 grid grid-cols-2 gap-4">
@@ -60,8 +61,8 @@ templ BaseTemplate() {
 								</div>
 							</div>
 							<p class="mt-10 text-center text-sm text-gray-500">
-								Not a member?
-								<a href="#" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Start a 14 day free trial</a>
+								No eres cliente? 
+								<a href="#" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"> - Comienza hoy y obten 14 días gratis</a>
 							</p>
 						</div>
 					</div>
