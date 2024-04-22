@@ -12,24 +12,23 @@ import (
 )
 
 func main() {
-	// Router
+  	// Router
 	router := chi.NewRouter()
 
 	// Middleware
 	router.Use(middleware.Logger)
 
+
 	// Routes
 	router.Get("/", controllers.HandlerBase)
+
 
 	router.Post("/partial-username-input-text", controllers.MainControllerUsernameInputText)
 	router.Post("/partial-password-input-text", controllers.MainControllerPasswordInputText)
 	router.Post("/partial-remember-checkbox", controllers.HandlerCheckboxRemember)
 
 	router.Get("/submit-signup", controllers.HandlerSignUpButton)
-	router.Post("/submit-signup", func(w http.ResponseWriter, r *http.Request) {
-		controllers.FromHookUsernameInputText(w, r)
-		controllers.HandlerSignUpButton(w, r)
-	})
+	router.Post("/submit-signup", controllers.HandlerSignUpButton)
 
 	// Server
 	port := os.Getenv("PORT")

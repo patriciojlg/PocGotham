@@ -15,7 +15,7 @@ func usernameInputTextdefaultStatus() *models.InputTextModel {
 	username.SetName("username")
 	username.SetType("email")
 	username.SetAutocomplete("email")
-	username.SetHXTrigger("change")
+	username.SetHXTrigger("change submit")
 	username.SetHXEndpoint("/partial-username-input-text")
 	username.SetClassLabelByStatus("default")
 	username.SetClassInputTextByStatus("default")
@@ -67,7 +67,7 @@ func FromHookUsernameInputText(w http.ResponseWriter, r *http.Request) {
 	modelUsername := usernameInputTextdefaultStatus()
 	valueUsername := r.FormValue("username")
 	modelUsername.SetValue(valueUsername)
-	if valueUsername == "" {
+	if valueUsername == "" && r.Method == "POST" {
 		renderEmptyError(modelUsername, w, r)
 		return
 
