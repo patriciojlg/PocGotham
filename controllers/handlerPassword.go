@@ -23,10 +23,11 @@ func passwordInputTextStatus() *models.InputTextModel {
 }
 
 func getPasswordStatus(valuePassword string) (string, string) {
-	if validators.IsEmpty(valuePassword) {
+	err := validators.IsEmpty(valuePassword)
+	if err != nil {
 		return "empty", ""
-
 	}
+
 	errPassword := validators.ValidateStrongPassowrd(valuePassword)
 	if errPassword != nil {
 		return "error", errPassword.Error()

@@ -1,30 +1,30 @@
 package models
 
-type HandlerErrors struct {
+type HandlerValidator struct {
 	Validators []func(string) error
 	ValueModel string
 }
 
-func NewHandlerErrors(value string) *HandlerErrors {
-	return &HandlerErrors{
-		ValueModel: value,
+func NewHandlerValidators(value *string) *HandlerValidator {
+	return &HandlerValidator{
+		ValueModel: *value,
 	}
 }
 
-func (c *HandlerErrors) SetValue(value string) *HandlerErrors {
+func (c *HandlerValidator) SetValue(value string) *HandlerValidator {
 	c.ValueModel = value
 	return c
 }
-func (c *HandlerErrors) AddValueValidator(validator func(string) error) *HandlerErrors {
+func (c *HandlerValidator) AddFuncValidator(validator func(string) error) *HandlerValidator {
 	c.Validators = append(c.Validators, validator)
 	return c
 }
 
-func (c *HandlerErrors) AddArrayValueValidators(validators []func(string) error) *HandlerErrors {
+func (c *HandlerValidator) AddArrayFuncsValidators(validators []func(string) error) *HandlerValidator {
 	c.Validators = append(c.Validators, validators...)
 	return c
 }
-func (c *HandlerErrors) ValidateValue() error {
+func (c *HandlerValidator) ValidateValue() error {
 	for _, validator := range c.Validators {
 		if err := validator(c.ValueModel); err != nil {
 			return err

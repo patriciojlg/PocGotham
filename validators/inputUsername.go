@@ -1,16 +1,22 @@
 package validators
 
-import "regexp"
+import (
+	"errors"
+	"regexp"
+)
 
-func IsEmailValid(email string) bool {
+func IsEmailValid(email string) error {
 	emailRegex := regexp.MustCompile(`^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$`)
-	return emailRegex.MatchString(email)
+	if !emailRegex.MatchString(email) {
+		return errors.New("formato de email no válido")
+	}
+	return nil
 }
 
-func IsEmpty(value string) bool {
-	if value != "" {
-		return false
+func IsEmpty(value string) error {
+	if value == "" {
+		return errors.New("campo requerido")
 	}
-	return true
+	return nil
 
 }

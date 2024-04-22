@@ -7,6 +7,9 @@ import (
 	"net/http"
 )
 
+var PostValidators []func(string) error = []func(string) error{validators.IsEmailValid, validators.IsEmpty}
+var GetValidators []func(string) error = []func(string) error{}
+
 func usernameInputTextdefaultStatus() *models.InputTextModel {
 	username := models.NewInputTextModel("username")
 	username.SetLabelText("Email")
@@ -21,17 +24,16 @@ func usernameInputTextdefaultStatus() *models.InputTextModel {
 	username.SetClassInputTextByStatus("default")
 	return username
 }
-
-func getStatus(valueUsername string) (string, string) {
-	if validators.IsEmpty(valueUsername) {
-		return "empty", ""
-
+func getValidatorsByMethod(method string) []func(string) error {
+	switch {
+	case method == "GET":
+		return GetValidators
+	case method == "POST":
+		return PostValidators
+	default:
+		return nil
 	}
-	if !validators.IsEmailValid(valueUsername) {
-		return "error", "Formato de email no válio"
-	}
 
-	return "success", ""
 }
 
 func MainControllerUsernameInputText(w http.ResponseWriter, r *http.Request) {
@@ -39,45 +41,17 @@ func MainControllerUsernameInputText(w http.ResponseWriter, r *http.Request) {
 	valueUsername := r.FormValue("username")
 	modelUsername.SetValue(valueUsername)
 
-	status, errorMessage := getStatus(valueUsername)
-	if errorMessage != "" {
-		modelUsername.SetErrorMessage(errorMessage)
-	}
-	modelUsername.SetClassLabelByStatus(status)
-	modelUsername.SetClassInputTextByStatus(status)
+	validatorByMethod := getValidatorsByMethod(r.Method)
+	modelUsername.Validator.AddArrayFuncsValidators(validatorByMethod)
 
-	component := views.InputTextViews(modelUsername)
-
-	component.Render(r.Context(), w)
-}
-
-func renderEmptyError(modelUsername *models.InputTextModel, w http.ResponseWriter, r *http.Request) {
-	modelUsername.SetErrorMessage("Campo requerido")
-	status := "error"
-	modelUsername.SetClassLabelByStatus(status)
-	modelUsername.SetClassInputTextByStatus(status)
-
-	component := views.InputTextViews(modelUsername)
-
-	component.Render(r.Context(), w)
-}
-func FromHookUsernameInputText(w http.ResponseWriter, r *http.Request) {
-	var status string
-
-	modelUsername := usernameInputTextdefaultStatus()
-	valueUsername := r.FormValue("username")
-	modelUsername.SetValue(valueUsername)
-	if valueUsername == "" && r.Method == "POST" {
-		renderEmptyError(modelUsername, w, r)
+	if valueUsername == "" && r.Method == "GET" {
+		modelUsername.SetStatusByString("default", "")
+		component := views.InputTextViews(modelUsername)
+		component.Render(r.Context(), w)
 		return
-
 	}
-	status, errorMessage := getStatus(valueUsername)
-	modelUsername.SetClassLabelByStatus(status)
-	modelUsername.SetClassInputTextByStatus(status)
-	modelUsername.SetErrorMessage(errorMessage)
+	modelUsername.ValidateNow()
+
 	component := views.InputTextViews(modelUsername)
-
 	component.Render(r.Context(), w)
-
 }
