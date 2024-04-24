@@ -100,6 +100,12 @@ func CheckboxView(checkboxModel *models.Checkbox) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
+		if false {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(" readonly")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		}
 		if checkboxModel.Disabled {
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(" disable")
 			if templ_7745c5c3_Err != nil {

@@ -1,7 +1,7 @@
 package main
 
 import (
-	controllers "PocGotham/controllers"
+	routes "PocGotham/routes"
 	settings "PocGotham/settings"
 	"log"
 	"log/slog"
@@ -17,17 +17,9 @@ func main() {
 
 	// Middleware
 	router.Use(middleware.Logger)
-
+	routes.SingUpRoutes(router)
+	routes.ConfirmSMSRoutes(router)
 	// Routes
-	router.Get("/", controllers.HandlerBase)
-	router.Get(settings.USERNAME_PARTIAL_ENDOINT, controllers.MainControllerUsernameInputText)
-	router.Post(settings.USERNAME_PARTIAL_ENDOINT, controllers.MainControllerUsernameInputText)
-	router.Get(settings.PASSWORD_PARTIAL_ENDOINT, controllers.MainControllerPasswordInputText)
-	router.Post(settings.PASSWORD_PARTIAL_ENDOINT, controllers.MainControllerPasswordInputText)
-	router.Post(settings.REMEMBER_PARTIAL_ENDOINT, controllers.HandlerCheckboxRemember)
-
-	router.Get(settings.SIGNUP_PARTIAL_ENDOINT, controllers.HandlerSignUpButton)
-	router.Post(settings.SIGNUP_PARTIAL_ENDOINT, controllers.HandlerSignUpButton)
 
 	slog.Info("Server starting", "port", settings.PORT)
 

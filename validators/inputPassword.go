@@ -29,7 +29,6 @@ func ValidateStrongPassowrd(s string) error {
 			hasSpecial = true
 		}
 	}
-
 	if !hasMinLen {
 		return errors.New("la contraseña debiera tener al menos 7 carácteres")
 	}

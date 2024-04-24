@@ -9,6 +9,7 @@ package models
 		</div>
 	</div>
 */
+
 func isInList(list []string, target string) bool {
 	for _, item := range list {
 		if item == target {
